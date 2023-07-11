@@ -1,9 +1,6 @@
 # my-cryptpad-docker-compose
 CryptPad is a collaboration suite, encrypted and open-source.
 
-## Migration
-Please see the [migration guide](MIGRATION.md) for further information on switching to this repository.  
-
 #### Environment variables  
 
 | Variables | Description | Required | Default |
