@@ -1,17 +1,16 @@
----
-version: '3.8'
+#Official DockerHub: https://hub.docker.com/r/promasu/cryptpad
+version: "3.7"
 
 services:
   cryptpad:
-    image: "promasu/cryptpad:nginx"
+    container_name: cryptpad
     hostname: cryptpad
-
+    image: promasu/cryptpad:latest
+    restart: always
     environment:
-      - CPAD_MAIN_DOMAIN=example.com
-      - CPAD_SANDBOX_DOMAIN=sandbox.example.com
-      # Traefik can't use HTTP2 to communicate with cryptpad_websocket
-      # A workaround is to disable HTTP2 in Nginx
-      - CPAD_HTTP2_DISABLE=true
+      - CPAD_MAIN_DOMAIN=changethis
+      - CPAD_SANDBOX_DOMAIN=sandbox.changethis.com
+      #- CPAD_TRUSTED_PROXY=
 
     volumes:
       - ./data/blob:/cryptpad/blob
@@ -22,12 +21,10 @@ services:
       - ./data/config.js:/cryptpad/config/config.js
 
     ports:
-      - "80:80"
-      - "443:443"
+      - "8087:80"
 
     expose:
       - "80"
-      - "443"
 
     ulimits:
       nofile:
