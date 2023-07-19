@@ -9,9 +9,7 @@ services:
     restart: always
     environment:
       - CPAD_MAIN_DOMAIN=changethis
-      - CPAD_SANDBOX_DOMAIN=sandbox.changethis.com
-      #- CPAD_TRUSTED_PROXY=
-
+      - CPAD_SANDBOX_DOMAIN=changethis
     volumes:
       - ./data/blob:/cryptpad/blob
       - ./data/block:/cryptpad/block
@@ -19,14 +17,6 @@ services:
       - ./data/data:/cryptpad/data
       - ./data/files:/cryptpad/datastore
       - ./data/config.js:/cryptpad/config/config.js
-
     ports:
-      - "8087:80"
-
-    expose:
-      - "80"
-
-    ulimits:
-      nofile:
-        soft: 1000000
-        hard: 1000000
+      - '3201:3001'
+      - '3202:3000'
